@@ -1,0 +1,16 @@
+<div class="filter-container">
+  <form (ngSubmit)="applyFilters()">
+      <div class="form-group">
+          <label for="price">Preço Máximo:</label>
+          <input type="number" id="price" [(ngModel)]="filters.price" name="price">
+      </div>
+      <div class="form-group">
+          <label for="brand">Marca:</label>
+          <select id="brand" [(ngModel)]="filters.brand" name="brand">
+              <option value="">Selecione uma Marca</option>
+              <option *ngFor="let brand of brands" [value]="brand">{{ brand }}</option>
+          </select>
+      </div>
+      <button type="submit">Filtrar</button>
+  </form>
+</div>
