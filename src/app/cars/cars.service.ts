@@ -1,6 +1,5 @@
-import { HttpClient, HttpResponse } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { carsServiceInterface } from './cars.interface';
 import { Observable } from 'rxjs';
 
 
@@ -10,13 +9,7 @@ import { Observable } from 'rxjs';
 })
 
 export class CarsService {
-
   constructor(private http: HttpClient) { }
-  data = [
-    { title: 'Carro B', price: 50000, imageUrl: 'https://images.prd.kavak.io/eyJidWNrZXQiOiJrYXZhay1pbWFnZXMiLCJrZXkiOiJpbWFnZXMvMTkzMjA4L0VYVEVSSU9SLWZyb250U2lkZVBpbG90TmVhci0xNjU3Mzc4MDAxNjQwLmpwZWciLCJlZGl0cyI6eyJyZXNpemUiOnsid2lkdGgiOjgxMCwiaGVpZ2h0Ijo0NjV9fX0=' },
-    { title: 'Carro B', price: 300, imageUrl: 'https://images.prd.kavak.io/eyJidWNrZXQiOiJrYXZhay1pbWFnZXMiLCJrZXkiOiJpbWFnZXMvMTkzMjA4L0VYVEVSSU9SLWZyb250U2lkZVBpbG90TmVhci0xNjU3Mzc4MDAxNjQwLmpwZWciLCJlZGl0cyI6eyJyZXNpemUiOnsid2lkdGgiOjgxMCwiaGVpZ2h0Ijo0NjV9fX0=' }
-
-  ]
 
   fetchData(): Observable<any>{
 

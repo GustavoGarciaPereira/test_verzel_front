@@ -1,10 +1,13 @@
 <div class="car-list">
 
   <div class="car-card" *ngFor="let car of carsServiceList">
-      <img [src]="car.imageUrl" alt="Imagem do carro">
+      <img [src]="car.url_imagem" alt="Imagem do carro">
       <div class="car-info">
-          <h3>{{ car.title }}</h3>
+          <h3>{{ car.nome }}</h3>
           <p>Preço: {{ car.price}}</p>
+          <p>id: {{ car.id }}</p>
+          <p>modelo: {{ car.modelo }}</p>
+          <p>marca: {{ car.marca }}</p>
       </div>
   </div>
 </div>

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterOutlet } from '@angular/router';
+import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { HeaderComponent } from './header/header.component';
 import { FilterComponent } from './filter/filter.component';
@@ -8,6 +8,7 @@ import { CarListingComponent } from './car-listing/car-listing.component';
 import { FooterComponent } from './footer/footer.component';
 import { CarsService } from './cars/cars.service';
 import { carsServiceInterface } from './cars/cars.interface';
+import { ListagemEntradaComponent } from './listagem-entrada/listagem-entrada.component';
 
 
 @Component({
@@ -16,11 +17,13 @@ import { carsServiceInterface } from './cars/cars.interface';
   imports: [
     CommonModule,
     RouterOutlet,
+    RouterLinkActive, RouterLink,
     NavBarComponent,
     HeaderComponent,
     FilterComponent,
     CarListingComponent,
-    FooterComponent
+    FooterComponent,
+    ListagemEntradaComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
