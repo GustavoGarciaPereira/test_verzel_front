@@ -9,7 +9,7 @@ import { FooterComponent } from './footer/footer.component';
 import { CarsService } from './cars/cars.service';
 import { carsServiceInterface } from './cars/cars.interface';
 import { ListagemEntradaComponent } from './listagem-entrada/listagem-entrada.component';
-
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 @Component({
   selector: 'app-root',
@@ -24,6 +24,7 @@ import { ListagemEntradaComponent } from './listagem-entrada/listagem-entrada.co
     CarListingComponent,
     FooterComponent,
     ListagemEntradaComponent,
+    MatSlideToggleModule
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
