@@ -1,5 +1,6 @@
-<nav class="navbar">
+<nav class="navbar" [ngClass]="{'active': navbarOpen}">
   <div class="nav-brand">Minha Aplicação</div>
+  <button class="nav-toggle" (click)="toggleNavbar()">☰</button>
   <ul class="nav-links">
     <li><a routerLink="/home">Listagem</a></li>
     <li><a routerLink="/cadastro">Cadastre-se</a></li>

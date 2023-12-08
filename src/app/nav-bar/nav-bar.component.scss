@@ -1,31 +1,71 @@
+/* Estilo Básico */
 .navbar {
-  background-color: #333;
-  color: white;
   display: flex;
   justify-content: space-between;
-  padding: 0.5rem 1rem;
+  align-items: center;
+  background-color: #333;
+  color: white;
+  padding: 10px 20px;
 }
 
 .nav-brand {
-  font-size: 1.5rem;
+  font-size: 1.5em;
   font-weight: bold;
 }
 
 .nav-links {
   list-style: none;
   display: flex;
-  gap: 1rem;
-  margin: 0;
-  padding: 0;
+  gap: 10px;
 }
 
 .nav-links a {
   color: white;
   text-decoration: none;
-  font-size: 1rem;
-  transition: color 0.3s;
+  padding: 5px 10px;
+  border-radius: 5px;
+  transition: background-color 0.3s;
 }
 
 .nav-links a:hover {
-  color: #ddd;
+  background-color: #555;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .nav-links {
+    display: none; /* Esconde os links na versão mobile */
+    flex-direction: column;
+    width: 100%;
+    gap: 0;
+  }
+
+  .nav-links a {
+    display: block;
+    text-align: center;
+    padding: 10px;
+  }
+
+  .navbar.active .nav-links {
+    display: flex; /* Mostra os links quando o menu está ativo */
+  }
+
+  /* Botão do menu hambúrguer (opcional) */
+  .nav-toggle {
+    display: block;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5em;
+    cursor: pointer;
+  }
+
+  .nav-toggle:focus {
+    outline: none;
+  }
+}
+
+/* Esconder botão do menu hambúrguer em telas maiores */
+.nav-toggle {
+  display: none;
 }

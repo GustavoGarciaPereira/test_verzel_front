@@ -12,4 +12,10 @@ import { TokenService } from '../storage/storage.service';
 })
 export class NavBarComponent {
   constructor(public tokenService: TokenService) {}
+
+  navbarOpen = false;
+
+  toggleNavbar() {
+    this.navbarOpen = !this.navbarOpen;
+  }
 }
