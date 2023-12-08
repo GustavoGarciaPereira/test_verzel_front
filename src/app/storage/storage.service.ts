@@ -18,6 +18,11 @@ export class TokenService {
     return sessionStorage.getItem(this.TOKEN_KEY);
   }
 
+  isLoggedIn(): boolean {
+    const token = this.getToken();
+    return token !== null; // Retorna true se existe um token, false caso contrário
+  }
+
   clearToken(): void {
     sessionStorage.removeItem(this.TOKEN_KEY);
   }

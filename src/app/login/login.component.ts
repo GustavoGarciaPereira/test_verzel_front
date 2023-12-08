@@ -7,11 +7,13 @@ import { AuthService } from '../service-login-user/service-login-user.service';
 import { UserLogin } from '../service-login-user/user-login';
 import { TokenService } from '../storage/storage.service';
 import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-login',
   standalone: true,
   imports: [
     FormsModule,
+    CommonModule,
     ReactiveFormsModule,
     NavBarComponent,
     FooterComponent
@@ -25,14 +27,13 @@ export class LoginComponent {
 
 
   constructor(
-    private authService: AuthService,
+    public authService: AuthService,
     private fb: FormBuilder,
-    private tokenService: TokenService,
+    public tokenService: TokenService,
     private router: Router
     ) {
     this.registrationForm = this.fb.group({
       username: ['', Validators.required],
-
       password: ['', [Validators.required, Validators.minLength(6)]]
     });
 
@@ -67,6 +68,11 @@ export class LoginComponent {
       }
     );
   }
-
+  logout() {
+    this.tokenService.clearToken(); // Limpa o token de acesso
+    this.tokenService.clearUserId(); // Limpa o ID do usuário
+    // Redireciona para a página de login ou inicial, se necessário
+    this.router.navigate(['/login']);
+  }
 }
 

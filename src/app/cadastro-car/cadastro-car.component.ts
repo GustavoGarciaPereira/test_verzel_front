@@ -4,11 +4,17 @@ import { ServiceCadastroCarService } from '../service-cadastro-car/service-cadas
 import { FormsModule } from '@angular/forms';
 import { TokenService } from '../storage/storage.service';
 import { Router } from '@angular/router';
+import { NavBarComponent } from '../nav-bar/nav-bar.component';
+import { FooterComponent } from '../footer/footer.component';
 
 @Component({
   selector: 'app-cadastro-car',
   standalone: true,
-  imports: [FormsModule],
+  imports: [
+    FormsModule,
+    NavBarComponent,
+    FooterComponent
+  ],
   templateUrl: './cadastro-car.component.html',
   styleUrl: './cadastro-car.component.scss'
 })
@@ -17,10 +23,7 @@ export class CadastroCarComponent {
     private carService: ServiceCadastroCarService,
     private tokenService: TokenService,
     private router: Router,
-  ) {
-
-
-  }
+  ) {}
   car: Car = {
     nome: '',
     marca: '',
@@ -30,6 +33,12 @@ export class CadastroCarComponent {
     user_id: 0 // substitua pelo ID do usuário, conforme necessário
   };
 
+  ngOnInit(): void {
+    if (this.tokenService.getUserId() === null) {
+      console.log('Usuário não está logado!');
+      this.router.navigate(['/login']);
+    }
+  }
 
   createCar() {
     console.log('Criando carro', this.car)
@@ -41,7 +50,15 @@ export class CadastroCarComponent {
 
     this.car.user_id = Number(this.tokenService.getUserId());
     this.carService.createCar(this.car).subscribe(
-      (      response: any) => console.log('Carro cadastrado com sucesso!', response),
+      (response: any) => {
+            this.car.user_id = 0;
+            this.car.nome = '';
+            this.car.marca = '';
+            this.car.modelo = '';
+            this.car.price = 0;
+            this.car.url_imagem = '';
+            console.log('Carro cadastrado com sucesso!', response)
+      },
       (      error: any) => console.error('Erro ao cadastrar carro', error)
     );
   }

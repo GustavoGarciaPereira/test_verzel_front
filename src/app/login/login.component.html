@@ -1,15 +1,24 @@
 <app-nav-bar></app-nav-bar>
-<form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
-  <div class="form-group">
-    <label for="username">Username:</label>
-    <input type="text" id="username" formControlName="username">
-  </div>
-  <div class="form-group">
-    <label for="password">Password:</label>
-    <input type="password" id="password" formControlName="password">
-  </div>
-  <button type="submit" [disabled]="!registrationForm.valid">Register</button>
-</form>
 
+<div *ngIf="tokenService.isLoggedIn(); else loginForm">
+  <div class="login-success">
+    <h2>🎉 Você está logado! 🎉</h2>
+    <p>Bem-vindo(a) de volta!</p>
+    <button class='logout-button' (click)="logout()">Deslogar</button>
+  </div>
+</div>
+<ng-template #loginForm>
+  <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="username">Username:</label>
+      <input type="text" id="username" formControlName="username">
+    </div>
+    <div class="form-group">
+      <label for="password">Password:</label>
+      <input type="password" id="password" formControlName="password">
+    </div>
+    <button type="submit" [disabled]="!registrationForm.valid">Register</button>
+  </form>
+</ng-template>
 
 <app-footer></app-footer>
