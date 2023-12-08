@@ -52,8 +52,6 @@ export class CadastroUsuarioComponent {
           console.error('Erro ao criar usuário', error);
         }
       );
-
-
     }
   }
 }

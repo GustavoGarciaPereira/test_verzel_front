@@ -51,12 +51,17 @@ export class LoginComponent {
     .subscribe(
       response => {
         console.log('Login successful', response);
+        console.log('Login successful', response);
+
         this.tokenService.saveToken(response.access_token);
+        this.tokenService.saveUserId(response.user_id);
+
         this.router.navigate(['/welcome']);
         // Aqui você pode fazer mais coisas com a resposta, como
         // redirecionar o usuário ou armazenar o token de autenticação
       },
       error => {
+
         console.error('Login failed', error);
         // Aqui você pode lidar com o erro, como exibir uma mensagem ao usuário
       }

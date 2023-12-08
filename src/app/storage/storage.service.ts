@@ -6,6 +6,7 @@ import { Injectable } from '@angular/core';
 export class TokenService {
 
   private readonly TOKEN_KEY = 'access_token';
+  private readonly USER_ID = 'user_id';
 
   constructor() { }
 
@@ -19,5 +20,19 @@ export class TokenService {
 
   clearToken(): void {
     sessionStorage.removeItem(this.TOKEN_KEY);
+  }
+
+
+  saveUserId(UserId: string): void {
+    sessionStorage.setItem(this.USER_ID, UserId);
+  }
+
+  getUserId(): string | null {
+    return sessionStorage.getItem(this.USER_ID);
+  }
+
+
+  clearUserId(): void {
+    sessionStorage.removeItem(this.USER_ID);
   }
 }
