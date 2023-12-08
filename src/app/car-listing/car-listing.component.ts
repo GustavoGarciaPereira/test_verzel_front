@@ -19,6 +19,7 @@ export class CarListingComponent implements OnInit{
   constructor(private meuServico: CarsService) { }
   ngOnInit(): void {
     this.meuServico.fetchData().subscribe(data => {
+      console.log(data);
       this.carsServiceList = data;
     });
   }

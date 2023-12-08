@@ -7,7 +7,7 @@ import { Car } from '../cadastro-car/car.model';
   providedIn: 'root'
 })
 export class ServiceCadastroCarService {
-  private apiUrl = 'http://localhost:8000/cars/';
+  private apiUrl = 'https://asdf-h6q0.onrender.com/cars/';
   constructor(private http: HttpClient) {}
 
   createCar(carData: Car): Observable<Car> {

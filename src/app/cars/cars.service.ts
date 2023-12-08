@@ -13,7 +13,7 @@ export class CarsService {
 
   fetchData(): Observable<any>{
 
-    return this.http.get('http://127.0.0.1:8000/cars');
+    return this.http.get('https://asdf-h6q0.onrender.com/cars');
 
   }
 

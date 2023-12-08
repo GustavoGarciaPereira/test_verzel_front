@@ -8,7 +8,7 @@ import { UserCreate } from './user-create'; // Ajuste o caminho conforme necess√
 })
 export class ServiceCreateUserService {
 
-  private apiUrl = 'http://127.0.0.1:8000/users/';
+  private apiUrl = 'https://asdf-h6q0.onrender.com/users/';
 
   constructor(private http: HttpClient) { }
 

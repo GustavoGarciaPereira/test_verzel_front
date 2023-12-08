@@ -8,7 +8,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class AuthService {
 
-  private apiUrl = 'http://localhost:8000/token/';
+  private apiUrl = 'https://asdf-h6q0.onrender.com/token/';
 
   constructor(private http: HttpClient) { }
 
