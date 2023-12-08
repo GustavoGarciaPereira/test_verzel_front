@@ -1,5 +1,5 @@
 # VitrineVeiculos
-
+[![Netlify Status](https://api.netlify.com/api/v1/badges/b26d6f51-defe-4326-b343-3b54680a4cd8/deploy-status)](https://app.netlify.com/sites/jovial-melomakarona-034d88/deploys)
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.5.
 
 ## Development server
