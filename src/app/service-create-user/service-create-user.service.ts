@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { UserCreate } from './user-create'; // Ajuste o caminho conforme necessário
-import { environment } from '../../environment';
+import { environment } from '../../environments/environment.development';
+
 
 @Injectable({
   providedIn: 'root'
