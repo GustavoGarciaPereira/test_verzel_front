@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://main--jovial-melomakarona-034d88.netlify.app'
+  apiUrl: 'https://asdf-h6q0.onrender.com'
 };
