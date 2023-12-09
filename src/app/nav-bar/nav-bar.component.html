@@ -4,7 +4,15 @@
   <!-- <button class="nav-toggle" (click)="toggleNavbar()">☰</button> -->
   <ul class="nav-links">
     <li><a routerLink="/home">Listagem</a></li>
-    <li><a routerLink="/cadastro">Cadastre-se</a></li>
+    <li *ngIf="tokenService.isLoggedIn(); else cadastroLink">
+
+    </li>
+    <ng-template #cadastroLink>
+      <li>
+        <a routerLink="/cadastro">Cadastre-se</a>
+      </li>
+    </ng-template>
+
     <li *ngIf="tokenService.isLoggedIn(); else loginLink">
       <a routerLink="/login">Logout</a>
     </li>

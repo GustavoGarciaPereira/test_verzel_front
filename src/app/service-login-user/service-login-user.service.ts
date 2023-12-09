@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import { UserLogin } from './user-login';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { environment } from '../../environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  private apiUrl = 'https://asdf-h6q0.onrender.com/token/';
+  private apiUrl = environment.apiUrl;
 
   constructor(private http: HttpClient) { }
 
@@ -23,7 +24,7 @@ export class AuthService {
       'accept': 'application/json'
     });
 
-    return this.http.post(this.apiUrl, body.toString(), { headers });
+    return this.http.post(`${this.apiUrl}/token/`, body.toString(), { headers });
   }
 
 }

@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from '../../environment';
 
 
 
@@ -10,10 +11,11 @@ import { Observable } from 'rxjs';
 
 export class CarsService {
   constructor(private http: HttpClient) { }
+  private apiUrl = environment.apiUrl;
 
   fetchData(): Observable<any>{
 
-    return this.http.get('https://asdf-h6q0.onrender.com/cars');
+    return this.http.get(`${this.apiUrl}/cars`);
 
   }
 
