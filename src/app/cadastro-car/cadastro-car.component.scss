@@ -36,3 +36,36 @@ input[type="number"] {
 .btn:hover {
   background-color: #0056b3;
 }
+/* Estilo para campos inválidos após a submissão do formulário */
+.submitted input:required:invalid {
+  border: 2px solid red;
+  background-color: #ffdddd;
+}
+
+/* Estilo para campos válidos após a submissão do formulário */
+.submitted input:required:valid {
+  border: 2px solid green;
+  background-color: #ddffdd;
+}
+/* Estilos existentes */
+// ...
+
+/* Estilos para mensagens de erro e sucesso */
+.alert {
+  padding: 10px;
+  margin-top: 15px;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.alert-danger {
+  background-color: #f8d7da;
+  border: 1px solid #f5c2c7;
+  color: #842029;
+}
+
+.alert-success {
+  background-color: #d1e7dd;
+  border: 1px solid #badbcc;
+  color: #0f5132;
+}

@@ -1,56 +1,59 @@
 <app-nav-bar></app-nav-bar>
-<form (ngSubmit)="createCar()" #carForm="ngForm">
-<div class="car-create-container">
-    <!-- Nome -->
-    <div class="form-group">
-      <label for="nome">Nome</label>
-      <input type="text" id="nome" [(ngModel)]="car.nome" name="nome" required>
-      <div *ngIf="carForm.submitted && carForm.form.controls['nome'].invalid" class="alert alert-danger">
-        O nome é obrigatório.
-      </div>
+<form [formGroup]="carForm" (ngSubmit)="createCar()">
+    <div class="car-create-container">
+        <!-- Nome -->
+        <div class="form-group">
+            <label for="nome">Nome</label>
+            <input type="text" id="nome" formControlName="nome">
+            <div *ngIf="carForm.controls['nome'].touched && carForm.controls['nome'].invalid" class="alert alert-danger">
+                O nome é obrigatório.
+            </div>
+        </div>
+
+        <!-- Marca -->
+        <div class="form-group">
+            <label for="marca">Marca</label>
+            <input type="text" id="marca" formControlName="marca">
+            <div *ngIf="carForm.controls['marca'].touched && carForm.controls['marca'].invalid" class="alert alert-danger">
+                A marca é obrigatória.
+            </div>
+        </div>
+
+        <!-- Modelo -->
+        <div class="form-group">
+            <label for="modelo">Modelo</label>
+            <input type="text" id="modelo" formControlName="modelo">
+            <div *ngIf="carForm.controls['modelo'].touched && carForm.controls['modelo'].invalid" class="alert alert-danger">
+                O modelo é obrigatório.
+            </div>
+        </div>
+
+        <!-- Preço -->
+        <div class="form-group">
+            <label for="price">Preço</label>
+            <input type="number" id="price" formControlName="price">
+            <div *ngIf="carForm.controls['price'].touched && carForm.controls['price'].invalid" class="alert alert-danger">
+                <div *ngIf="carForm.controls['price'].errors?.['required']">O preço é obrigatório.</div>
+                <div *ngIf="carForm.controls['price'].errors?.['min']">O preço não pode ser negativo.</div>
+            </div>
+        </div>
+
+        <!-- URL da Imagem -->
+        <div class="form-group">
+            <label for="url_imagem">URL da Imagem</label>
+            <input type="text" id="url_imagem" formControlName="url_imagem">
+            <div *ngIf="carForm.controls['url_imagem'].touched && carForm.controls['url_imagem'].invalid" class="alert alert-danger">
+                A URL da imagem é obrigatória.
+            </div>
+        </div>
+
+        <!-- Mensagem de Sucesso -->
+        <div *ngIf="showSuccessMessage" class="alert alert-success">
+            Carro cadastrado com sucesso!
+        </div>
+
+        <!-- Botão de Submissão -->
+        <button type="submit" class="btn" [disabled]="!carForm.valid">Cadastrar Carro</button>
     </div>
-
-    <!-- Marca -->
-    <div class="form-group">
-      <label for="marca">Marca</label>
-      <input type="text" id="marca" [(ngModel)]="car.marca" name="marca" required>
-      <div *ngIf="carForm.submitted && carForm.form.controls['marca'].invalid" class="alert alert-danger">
-        A marca é obrigatória.
-      </div>
-    </div>
-
-    <!-- Modelo -->
-    <div class="form-group">
-      <label for="modelo">Modelo</label>
-      <input type="text" id="modelo" [(ngModel)]="car.modelo" name="modelo" required>
-      <div *ngIf="carForm.submitted && carForm.form.controls['modelo'].invalid" class="alert alert-danger">
-        O modelo é obrigatório.
-      </div>
-    </div>
-
-    <!-- Preço -->
-    <div class="form-group">
-      <label for="price">Preço</label>
-      <input type="number" id="price" [(ngModel)]="car.price" name="price" required min="0">
-      <div *ngIf="carForm.submitted && carForm.form.controls['price'].invalid" class="alert alert-danger">
-        <div *ngIf="carForm.form.controls['price'].errors && carForm.form.controls['price'].errors['required']">O preço é obrigatório.</div>
-        <div *ngIf="carForm.form.controls['price'].errors && carForm.form.controls['price'].errors['min']">O preço não pode ser negativo.</div>
-      </div>
-    </div>
-
-
-
-    <!-- URL da Imagem -->
-    <div class="form-group">
-      <label for="url_imagem">URL da Imagem</label>
-      <input type="text" id="url_imagem" [(ngModel)]="car.url_imagem" name="url_imagem" required>
-      <div *ngIf="carForm.submitted && carForm.form.controls['url_imagem'].invalid" class="alert alert-danger">
-        A URL da imagem é obrigatória.
-      </div>
-    </div>
-
-    <!-- Botão de Submissão -->
-    <button type="submit" class="btn" [disabled]="!carForm.valid">Cadastrar Carro</button>
-</div>
 </form>
 <app-footer></app-footer>

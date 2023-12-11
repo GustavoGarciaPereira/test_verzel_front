@@ -1,39 +1,33 @@
 import { Component, OnInit } from '@angular/core';
-import { Car } from './car.model';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ServiceCadastroCarService } from '../service-cadastro-car/service-cadastro-car.service';
 import { TokenService } from '../storage/storage.service';
-import { Router } from '@angular/router';
-import { NavBarComponent } from '../nav-bar/nav-bar.component';
 import { FooterComponent } from '../footer/footer.component';
+import { NavBarComponent } from '../nav-bar/nav-bar.component';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-cadastro-car',
   standalone: true,
   imports: [
-    CommonModule,
-    FormsModule,
+    CommonModule, // CommonModule ainda é necessário para diretivas comuns
+    ReactiveFormsModule, // Usando ReactiveFormsModule agora
     NavBarComponent,
     FooterComponent
   ],
   templateUrl: './cadastro-car.component.html',
-  styleUrls: ['./cadastro-car.component.scss'] // Corrigido para 'styleUrls' (é um array)
+  styleUrls: ['./cadastro-car.component.scss']
 })
 export class CadastroCarComponent implements OnInit {
-  car: Car = {
-    nome: '',
-    marca: '',
-    modelo: '',
-    price: 0,
-    url_imagem: '',
-    user_id: 0 // substitua pelo ID do usuário, conforme necessário
-  };
+  carForm!: FormGroup; // Formulário reativo
+  showSuccessMessage = false;
 
   constructor(
+    private fb: FormBuilder,
     private carService: ServiceCadastroCarService,
     private tokenService: TokenService,
-    private router: Router,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -41,34 +35,41 @@ export class CadastroCarComponent implements OnInit {
       console.log('Usuário não está logado!');
       this.router.navigate(['/login']);
     }
+
+    this.carForm = this.fb.group({
+      nome: ['', Validators.required],
+      marca: ['', Validators.required],
+      modelo: ['', Validators.required],
+      price: [0, [Validators.required, Validators.min(0)]],
+      url_imagem: ['', Validators.required]
+      // user_id é gerenciado internamente, não é necessário no formulário
+    });
   }
 
   createCar() {
-    console.log('Criando carro', this.car);
-    if (!this.tokenService.getUserId()) {
-      console.log('Usuário não está logado!');
-      this.router.navigate(['/login']);
+    if (this.carForm?.invalid) {
+      console.log('Formulário inválido');
       return;
     }
 
-    this.car.user_id = Number(this.tokenService.getUserId());
-    this.carService.createCar(this.car).subscribe(
+    const carData = {
+      ...this.carForm?.value,
+      user_id: Number(this.tokenService.getUserId())
+    };
+
+    this.carService.createCar(carData).subscribe(
       response => {
-        this.resetCar();
+        this.showSuccessMessage = true;
+        this.carForm?.reset(); // Resetar o formulário
         console.log('Carro cadastrado com sucesso!', response);
+        setTimeout(() => this.showSuccessMessage = false, 2000);
       },
-      error => console.error('Erro ao cadastrar carro', error)
+      error => {
+        console.error('Erro ao cadastrar carro', error);
+      }
     );
   }
-
-  private resetCar() {
-    this.car = {
-      nome: '',
-      marca: '',
-      modelo: '',
-      price: 0,
-      url_imagem: '',
-      user_id: 0
-    };
-  }
 }
+
+
+
