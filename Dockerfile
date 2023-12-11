@@ -14,7 +14,7 @@ RUN npm install
 COPY . .
 
 # Exponha a porta 4200 (a porta padrão do ng serve)
-EXPOSE 4200
+EXPOSE 80
 
 # Inicie o servidor de desenvolvimento do Angular com o comando "npm start"
 CMD ["npm", "start"]
